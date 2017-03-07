@@ -42,13 +42,6 @@ resource "aws_s3_bucket" "secondary" {
   }
 }
 
-resource "aws_s3_bucket_object" "index" {
-  bucket = "${aws_s3_bucket.primary.id}"
-  key = "index.html"
-  content = "${file("${path.module}/index.html")}"
-  content_type = "text/html"
-}
-
 resource "aws_route53_record" "primary" {
   zone_id = "${data.aws_route53_zone.main.zone_id}"
   name = "luciachoi.com"
